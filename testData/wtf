@@ -1,0 +1,24 @@
+import math
+import pymedia.audio.acodec as acodec
+import pymedia.muxer as muxer
+dm= muxer.Demuxer( 'mp3' )
+
+
+f= open( 'x-makeena-death-on-the-wax-07-khuumin-khatiraan-feat-amraa.mp3', 'rb' )
+s= f.read( 200000 )
+frames= dm.parse( s )
+
+frame= frames[ 0 ]
+dec= acodec.Decoder( dm.streams[ 0 ] )
+
+
+r= dec.decode( frame[ 1 ] )
+
+
+
+print ( r.data )
+
+logfile = open('test.log', 'w')
+logfile.write( r.data)
+logfile.close()
+print file ('test.log').read()
